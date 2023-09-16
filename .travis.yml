@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t marci/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t marcelino13/react-test -f ./client/Dockerfile.dev ./client
 
 script: 
-  - docker run -e CI=true marci/react-test npm test
+  - docker run -e CI=true marcelino13/react-test npm test
 
 after_success:
-  - docker build -t marci/multi-client ./client
-  - docker build -t marci/multi-nginx ./nginx
-  - docker build -t marci/multi-server ./server
-  - docker build -t marci/multi-worker ./worker
+  - docker build -t marcelino13/multi-client ./client
+  - docker build -t marcelino13/multi-nginx ./nginx
+  - docker build -t mamarcelino13rci/multi-server ./server
+  - docker build -t marcelino13/multi-worker ./worker
   # log in to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # take those images and push them to docker hub
-  - docker push marci/multi-client
-  - docker push marci/multi-nginx
-  - docker push marci/multi-server
-  - docker push marci/multi-worker
+  - docker push marcelino13/multi-client
+  - docker push marcelino13/multi-nginx
+  - docker push marcelino13/multi-server
+  - docker push marcelino13/multi-worker
