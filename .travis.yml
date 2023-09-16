@@ -13,3 +13,10 @@ after_success:
   - docker build -t marci/multi-nginx ./nginx
   - docker build -t marci/multi-server ./server
   - docker build -t marci/multi-worker ./worker
+  # log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push them to docker hub
+  - docker push marci/multi-client
+  - docker push marci/multi-nginx
+  - docker push marci/multi-server
+  - docker push marci/multi-worker
